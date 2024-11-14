@@ -301,7 +301,7 @@ internal abstract class AbstractJsonLexer {
     }
 
     open fun indexOf(char: Char, startPos: Int) = source.indexOf(char, startPos)
-    open fun substring(startPos: Int, endPos: Int) =  source.substring(startPos, endPos)
+    open fun substring(startPos: Int, endPos: Int) = source.substring(startPos, endPos)
 
     /*
      * This method is a copy of consumeString, but used for key of json objects, so there
@@ -576,7 +576,10 @@ internal abstract class AbstractJsonLexer {
         // but still would like an error to point to the beginning of the key, so we are backtracking it
         val processed = substring(0, currentPosition)
         val lastIndexOf = processed.lastIndexOf(key)
-        fail("Encountered an unknown key '$key'", lastIndexOf, ignoreUnknownKeysHint)
+        throw JsonDecodingException(
+            "Encountered an unknown key '$key' at offset $lastIndexOf at path: ${path.getPath()}\n$ignoreUnknownKeysHint\n" +
+                "JSON input: ${source.minify(lastIndexOf)}"
+        )
     }
 
     fun fail(message: String, position: Int = currentPosition, hint: String = ""): Nothing {

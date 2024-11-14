@@ -74,3 +74,12 @@ public annotation class JsonNames(vararg val names: String)
 @Target(AnnotationTarget.CLASS)
 @ExperimentalSerializationApi
 public annotation class JsonClassDiscriminator(val discriminator: String)
+
+
+/**
+ * Same as [JsonBuilder.ignoreUnknownKeys], but for more fine-tuned application to classes.
+ */
+@SerialInfo
+@Target(AnnotationTarget.CLASS)
+@ExperimentalSerializationApi
+public annotation class JsonIgnoreUnknownKeys
