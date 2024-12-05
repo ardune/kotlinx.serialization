@@ -14,7 +14,7 @@ internal const val lenientHint = "Use 'isLenient = true' in 'Json {}' builder to
 internal const val coerceInputValuesHint = "Use 'coerceInputValues = true' in 'Json {}' builder to coerce nulls if property has a default value."
 internal const val specialFlowingValuesHint =
     "It is possible to deserialize them using 'JsonBuilder.allowSpecialFloatingPointValues = true'"
-internal const val ignoreUnknownKeysHint = "Use 'ignoreUnknownKeys = true' in 'Json {}' builder to ignore unknown keys."
+internal const val ignoreUnknownKeysHint = "Use 'ignoreUnknownKeys = true' in 'Json {}' builder or '@JsonIgnoreUnknownKeys' annotation to ignore unknown keys."
 internal const val allowStructuredMapKeysHint =
     "Use 'allowStructuredMapKeys = true' in 'Json {}' builder to convert such maps to [key1, value1, key2, value2,...] arrays."
 
