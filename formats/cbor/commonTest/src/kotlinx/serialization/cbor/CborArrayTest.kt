@@ -48,7 +48,7 @@ class CborArrayTest {
          *    A0        # map(0)
          */
         val referenceHexString = "842663626172f6a0"
-        val reference = ClassAs4ArrayNullable(alg = -7, kid = "bar", iv = null, array = null)
+        val reference = ClassAs4ArrayNullable(alg = -7, kid = "bar", iv = null, array = ClassWithArray())
 
         val cbor = Cbor.CoseCompliant
 
@@ -133,7 +133,7 @@ class CborArrayTest {
         @ByteString
         val iv: ByteArray?,
         @SerialName("array")
-        val array: ClassWithArray?
+        val array: ClassWithArray
     ) {
         override fun equals(other: Any?): Boolean {
             if (this === other) return true
@@ -164,8 +164,8 @@ class CborArrayTest {
 
     @Serializable
     data class ClassWithArray(
-        @SerialName("array")
-        val array: ClassAs2Array,
+        @EncodeDefault(EncodeDefault.Mode.NEVER)
+        val array: ClassAs2Array? = null,
     )
 
 

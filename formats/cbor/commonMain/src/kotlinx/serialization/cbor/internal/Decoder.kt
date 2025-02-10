@@ -170,14 +170,12 @@ internal class CborParser(private val input: ByteArrayInput, private val verifyO
         readByte()
     }
 
-    fun isNull() = (curByte == NULL || curByte == EMPTY_MAP)
+    fun isNull() = (curByte == NULL)
 
     fun nextNull(tags: ULongArray? = null): Nothing? {
         processTags(tags)
         if (curByte == NULL) {
             skipByte(NULL)
-        } else if (curByte == EMPTY_MAP) {
-            skipByte(EMPTY_MAP)
         }
         return null
     }
