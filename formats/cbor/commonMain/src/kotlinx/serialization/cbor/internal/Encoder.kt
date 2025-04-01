@@ -39,6 +39,9 @@ internal sealed class CborWriter(
     override val serializersModule: SerializersModule
         get() = cbor.serializersModule
 
+    override fun encodeTag(value: ULong) {
+        getDestination().encodeTag(value)
+    }
 
     @OptIn(ExperimentalSerializationApi::class)
     override fun <T> encodeSerializableValue(serializer: SerializationStrategy<T>, value: T) {

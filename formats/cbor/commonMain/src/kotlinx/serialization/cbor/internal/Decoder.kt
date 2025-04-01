@@ -31,6 +31,10 @@ internal open class CborReader(override val cbor: Cbor, protected val parser: Cb
         }
     }
 
+    override fun processTags(): ULongArray? {
+        return parser.processTags(null)
+    }
+
     override val serializersModule: SerializersModule
         get() = cbor.serializersModule
 
@@ -250,7 +254,7 @@ internal class CborParser(private val input: ByteArrayInput, private val configu
             input.readExactNBytes(strLen)
         }
 
-    private fun processTags(tags: ULongArray?): ULongArray? {
+    fun processTags(tags: ULongArray?): ULongArray? {
         var index = 0
         val collectedTags = mutableListOf<ULong>()
         while ((curByte and 0b111_00000) == HEADER_TAG) {

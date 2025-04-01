@@ -31,4 +31,16 @@ public interface CborDecoder : Decoder {
      * Exposes the current [Cbor] instance and all its configuration flags. Useful for low-level custom serializers.
      */
     public val cbor: Cbor
+
+    /**
+     * Processes and retrieves all CBOR tags (Major type 6),
+     * Please note using this method may cause verification errors if any of these CBOR settings are enabled:
+     *     - verifyKeyTags
+     *     - verifyValueTags
+     *     - verifyObjectTags
+     *
+     * TODO: evaluate any edge cases around this and other decode actions
+     */
+    @OptIn(ExperimentalUnsignedTypes::class)
+    public fun processTags(): ULongArray?
 }

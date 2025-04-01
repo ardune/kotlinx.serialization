@@ -31,4 +31,9 @@ public interface CborEncoder : Encoder {
      * Exposes the current [Cbor] instance and all its configuration flags. Useful for low-level custom serializers.
      */
     public val cbor: Cbor
+
+    /**
+     * Allows for the encoding of a tag in-place for custom types
+     */
+    public fun encodeTag(value: ULong)
 }
